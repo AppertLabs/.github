@@ -1,0 +1,84 @@
+name: Bug report
+description: Something is broken or does not match the spec.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For AppertLabs apps, every bug fix and feature ships on **iOS (incl. Apple Watch / Apple TV where relevant) and Android**. Websites and tooling can tick *Not applicable*.
+        Larger work: parent issue plus platform sub-issues. Small shared fixes: one issue with the platform checkboxes.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you saw. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: false
+  - type: checkboxes
+    id: platforms
+    attributes:
+      label: Platforms
+      description: >-
+        Which platforms must be fixed? Tick every platform this repo ships on.
+        iOS-only? Say so in Platform notes and link the Android follow-up issue.
+      options:
+        - label: iOS
+        - label: Apple Watch / Apple TV (where relevant)
+        - label: Android
+        - label: Not applicable (web/tooling)
+  - type: dropdown
+    id: platform-scope
+    attributes:
+      label: Platform scope
+      description: Required, because GitHub cannot require "at least one" checkbox above.
+      options:
+        - All app platforms (iOS + Android, plus Watch/TV where relevant)
+        - One platform only — follow-up issue for the other platform is linked below
+        - Not applicable (web/tooling)
+    validations:
+      required: true
+  - type: dropdown
+    id: split
+    attributes:
+      label: Split into sub-issues?
+      description: >-
+        Larger work gets a parent issue plus one sub-issue per platform.
+        A small shared-code fix can stay one issue with the checkboxes above.
+      options:
+        - No — small or shared-code change, one issue
+        - Yes — parent issue plus platform sub-issues (e.g. "iOS (+Watch)" and "Android")
+        - Not sure — let refine propose a split
+    validations:
+      required: false
+  - type: textarea
+    id: platform-notes
+    attributes:
+      label: Platform notes
+      description: >-
+        Platform differences or equivalents (e.g. HealthKit vs Health Connect, Live Activity vs
+        ongoing notification, StoreKit vs Google Play Billing). iOS-only? Explain why and link
+        the Android follow-up issue.
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: App version / device
+      placeholder: e.g. 1.4.2 (123), iPhone 15 / Pixel 8
+    validations:
+      required: false
